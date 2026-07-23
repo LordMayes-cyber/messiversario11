@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#274c4a">
+  <title>11 meses, a un paso del año ❤️</title>
+  <style>
+    :root{--verde:#274c4a;--menta:#b8d7ce;--oro:#d7aa58;--marfil:#fffdf4;--tinta:#213a39}
+    *{box-sizing:border-box}body{margin:0;background:var(--marfil);color:var(--tinta);font-family:Georgia,serif;overflow-x:hidden}
+    header{min-height:88vh;display:grid;place-items:center;text-align:center;padding:45px 20px;background:linear-gradient(#153836aa,#153836aa),url('img/1.jpeg') center/cover;position:relative;color:white}
+    header::after{content:"";position:absolute;inset:18px;border:1px solid #f4dfae88;border-radius:28px;pointer-events:none}.hero{position:relative;z-index:1;max-width:820px}.mini{letter-spacing:.24em;text-transform:uppercase;font:bold 12px Arial;color:#f5d78f}
+    h1{font-size:clamp(44px,9vw,90px);line-height:.98;margin:20px 0}.hero p{font-size:clamp(18px,2.5vw,24px);line-height:1.6;max-width:680px;margin:0 auto 30px}.badge{display:inline-grid;place-items:center;width:120px;height:120px;border:2px solid #f5d78f;border-radius:50%;background:#102d2b99;backdrop-filter:blur(5px);font:700 52px/1 Arial}.badge small{display:block;font:700 10px/1 Arial;letter-spacing:.14em;text-transform:uppercase;margin-top:-26px}
+    .envelope-button{border:0;border-radius:999px;padding:14px 24px;background:var(--oro);color:#173735;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 14px 38px #0005;transition:.25s}.envelope-button:hover{transform:translateY(-3px);background:#efc675}
+    main{max-width:1160px;margin:auto;padding:85px 5vw}.heading{text-align:center;max-width:720px;margin:0 auto 44px}.heading h2{font-size:clamp(31px,5vw,50px);margin:0 0 12px}.heading p{font:17px/1.7 system-ui;color:#55706e}
+    .mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:16px}.mosaic figure{margin:0;border-radius:20px;overflow:hidden;position:relative;background:var(--menta);box-shadow:0 12px 36px #20424022}.mosaic figure:nth-child(1),.mosaic figure:nth-child(6){grid-row:span 2}.mosaic figure:nth-child(3),.mosaic figure:nth-child(8){grid-column:span 2}.mosaic img{width:100%;height:100%;object-fit:cover;display:block;transition:.5s}.mosaic figure:hover img{transform:scale(1.05)}
+    .countdown{margin:75px auto 0;max-width:820px;border:1px solid #d9c59b;border-radius:26px;padding:clamp(28px,6vw,58px);text-align:center;background:linear-gradient(135deg,#fff,#f3eee0);box-shadow:0 20px 60px #3c5a4f1b}.countdown strong{display:block;color:var(--verde);font-size:clamp(30px,6vw,56px);margin-bottom:12px}.countdown p{font-size:18px;line-height:1.7;margin:0 0 25px}
+    dialog{border:0;border-radius:10px;padding:0;max-width:min(720px,92vw);max-height:88vh;background:#fffdf4;color:var(--tinta);box-shadow:0 35px 120px #0b2725aa}dialog::backdrop{background:#0c2c2ad8;backdrop-filter:blur(6px)}.letter{padding:clamp(30px,7vw,64px);position:relative;border:1px solid #d7aa58;background:linear-gradient(90deg,transparent 0 7%,#d8b86555 7.2%,transparent 7.4%),repeating-linear-gradient(#fffdf4 0 31px,#dbe8e3 32px)}.letter h2{text-align:center;font-size:clamp(30px,6vw,47px);color:var(--verde);margin:0 0 25px}.letter p{font-size:17px;line-height:1.85;text-align:justify}.close{float:right;position:sticky;top:10px;border:0;border-radius:50%;width:40px;height:40px;background:var(--verde);color:white;cursor:pointer}.seal{text-align:center;font-size:42px;color:#9e3540;margin-top:22px}
+    @media(max-width:820px){.mosaic{grid-template-columns:repeat(2,1fr)}.mosaic figure:nth-child(3),.mosaic figure:nth-child(8){grid-column:span 1}}
+    @media(max-width:520px){header{min-height:78vh}.mosaic{grid-auto-rows:230px}.mosaic figure:nth-child(1),.mosaic figure:nth-child(6){grid-row:span 1}.letter p{text-align:left}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="mini">Nuestro penúltimo mes antes del año</div>
+      <h1>A un paso<br>de nuestro año</h1>
+      <div class="badge" aria-label="Once meses">11<small>meses</small></div>
+      <p>Estamos tan cerca de nuestro primer gran aniversario, y mi corazón ya está lleno de todo lo que vivimos para llegar hasta aquí.</p>
+      <button class="envelope-button" type="button" onclick="carta.showModal()">Abrir el sobre 💌</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="heading"><h2>Once recuerdos, una sola historia</h2><p>Cada imagen es una pequeña prueba de que el amor se construye viviendo, riendo y permaneciendo.</p></section>
+    <section class="mosaic" aria-label="Álbum de recuerdos">
+        <figure><img src="img/1.jpeg" alt="Una selfie juntos durante una salida nocturna" loading="lazy"></figure>
+        <figure><img src="img/2.jpeg" alt="Sonriendo juntos junto al agua" loading="lazy"></figure>
+        <figure><img src="img/3.jpeg" alt="Una aventura compartida frente a una cascada" loading="lazy"></figure>
+        <figure><img src="img/4.jpeg" alt="Un beso cariñoso dentro del automóvil" loading="lazy"></figure>
+        <figure><img src="img/5.jpeg" alt="Una visita amorosa durante el trabajo" loading="lazy"></figure>
+        <figure><img src="img/6.jpeg" alt="Una selfie sonriente durante una celebración" loading="lazy"></figure>
+        <figure><img src="img/7.jpeg" alt="Un beso durante una escapada a la naturaleza" loading="lazy"></figure>
+        <figure><img src="img/8.jpeg" alt="Un recuerdo feliz de una noche especial" loading="lazy"></figure>
+    </section>
+    <section class="countdown"><strong>Falta solamente un mes</strong><p>Un mes para mirar atrás y celebrar un año completo de nosotros. Pero hoy, el once también merece su propia fiesta.</p><button class="envelope-button" type="button" onclick="carta.showModal()">Leer mi carta</button></section>
+  </main>
+
+  <dialog id="carta" aria-labelledby="titulo">
+    <article class="letter">
+      <button class="close" type="button" onclick="carta.close()" aria-label="Cerrar">✕</button>
+      <h2 id="titulo">Felices 11 meses, mi vida</h2>
+      <p>Hoy estamos a solamente un mes de cumplir nuestro primer año, y pensar en todo el camino que recorrimos me llena de emoción. Han sido once meses de conocernos mejor, de aprender, de reír y de demostrar que lo nuestro merece ser cuidado.</p>
+      <p>Gracias por permanecer, por creer en nosotros y por seguir poniendo amor incluso en los días que requieren más paciencia. Valoro cada detalle suyo, cada palabra de apoyo y cada momento en el que me ha hecho sentir acompañado.</p>
+      <p>No quiero esperar hasta el año para decirle lo importante que es para mí. Estos once meses ya son un logro hermoso y una colección de recuerdos que guardo con muchísimo cariño.</p>
+      <p>La quiero con todo mi corazón, mi reina. Estoy feliz de estar a un paso de nuestro año y todavía más feliz de saber que ese paso lo doy con usted. Feliz mesiversario, amor. ❤️</p>
+      <div class="seal">♥</div>
+    </article>
+  </dialog>
+  <script>const carta=document.getElementById('carta');carta.addEventListener('click',e=>{if(e.target===carta)carta.close()});</script>
+</body>
+</html>
