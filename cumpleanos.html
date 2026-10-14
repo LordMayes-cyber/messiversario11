@@ -56,11 +56,23 @@
     .photo-row figcaption { margin-top: 9px; color: var(--muted); font-size: 13px; }
 
     .letter { margin-bottom: 72px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .letter summary { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--ink); cursor: pointer; list-style: none; font: 400 25px/1.2 var(--serif); }
-    .letter summary::-webkit-details-marker { display: none; }
-    .letter summary::after { content: "+"; color: var(--rose); font: 300 27px/1 var(--sans); }
-    .letter[open] summary::after { content: "−"; }
-    .letter-content { max-width: 700px; padding: 2px 0 27px; color: var(--muted); }
+    .letter-button { width: 100%; min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0; border: 0; background: transparent; color: var(--ink); cursor: pointer; text-align: left; font: 400 25px/1.2 var(--serif); }
+    .letter-button::after { content: "↗"; color: var(--rose); font: 400 22px/1 var(--sans); }
+    .letter-button:hover { color: var(--rose); }
+    .letter-dialog { position: fixed; inset: 0; width: min(620px, calc(100% - 32px)); max-width: none; max-height: min(88dvh, 820px); margin: auto; padding: 0; overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 24px 80px #342c3026; }
+    .letter-dialog[open] { animation: dialog-in .35s cubic-bezier(.2,.8,.2,1) both; }
+    .letter-dialog::backdrop { background: #342c3066; backdrop-filter: blur(3px); animation: backdrop-in .25s ease both; }
+    .dialog-inner { position: relative; padding: 30px clamp(22px, 6vw, 46px) 36px; }
+    .dialog-close { position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: var(--muted); cursor: pointer; font: 22px/1 var(--sans); }
+    .dialog-close:hover { color: var(--rose); border-color: var(--rose-light); }
+    .lab-sticker { position: relative; width: 148px; margin: 0 auto 14px; isolation: isolate; }
+    .lab-sticker svg { display: block; width: 100%; filter: drop-shadow(0 5px 0 white) drop-shadow(0 0 1px #d9c8ce); }
+    .floating-heart { position: absolute; z-index: -1; color: #c77e94; font-size: 19px; animation: heart-float 2.8s ease-in-out infinite; }
+    .floating-heart.one { top: 10px; right: -4px; }
+    .floating-heart.two { top: 58px; left: -8px; color: #dfabb8; font-size: 14px; animation-delay: .8s; }
+    .floating-heart.three { right: 7px; bottom: 22px; color: #ad7185; font-size: 13px; animation-delay: 1.4s; }
+    .lab-caption { margin: 0 0 22px; color: var(--rose); text-align: center; font-size: 10px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    .letter-content { max-width: 700px; margin-inline: auto; color: var(--muted); }
     .letter-content h3 { margin: 8px 0 14px; color: var(--rose); font-size: 36px; line-height: 1.1; }
     .letter-content p { margin: 0 0 15px; }
     .signoff { margin-top: 22px !important; color: var(--ink); font-family: var(--serif); font-size: 21px; }
@@ -89,14 +101,18 @@
       .photo-row figure:last-child { display: none; }
       .photo-row img { aspect-ratio: .95 / 1; }
       .section-heading h2 { font-size: 40px; }
-      .letter summary { min-height: 68px; font-size: 22px; }
+      .letter-button { min-height: 68px; font-size: 22px; }
       .letter-content h3 { font-size: 32px; }
       footer { flex-direction: column; gap: 4px; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; }
+      .letter-dialog[open], .letter-dialog::backdrop, .floating-heart { animation: none !important; }
     }
+    @keyframes dialog-in { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes heart-float { 0%, 100% { transform: translateY(3px) rotate(-8deg); opacity: .55; } 50% { transform: translateY(-9px) rotate(8deg); opacity: 1; } }
   </style>
 </head>
 <body>
@@ -110,7 +126,7 @@
       <div>
         <p class="eyebrow">Hoy celebro que usted exista</p>
         <h1 id="title">Feliz cumpleaños,<br><span>mi amor.</span></h1>
-        <p class="hero-copy">Usted tiene una forma muy suya de hacer más amable cualquier día. Hoy quiero celebrar todo lo que es y recordarle cuánto la quiero.</p>
+        <p class="hero-copy">Usted tiene una forma muy suya de hacer más lindo cualquier día.</p>
         <a class="text-link" href="#carta">Una carta para usted <span aria-hidden="true">↓</span></a>
       </div>
       <figure class="hero-photo">
@@ -123,7 +139,7 @@
       <section class="memories" id="recuerdos" aria-labelledby="memories-title">
         <div class="section-heading">
           <p class="eyebrow">Algunos momentos felices</p>
-          <h2 id="memories-title">Mi regalo favorito es compartir la vida con usted.</h2>
+          <h2 id="memories-title">Mi regalo favorito es compartir cada momento de mi vida con usted.</h2>
           <p>Cada fotografía me recuerda la suerte que tengo de vivir estos momentos a su lado.</p>
         </div>
         <div class="photo-row">
@@ -133,20 +149,51 @@
         </div>
       </section>
 
-      <details class="letter" id="carta">
-        <summary>Una carta para usted</summary>
-        <div class="letter-content">
-          <h3>Feliz cumpleaños, mi vida.</h3>
+      <section class="letter" id="carta" aria-label="Carta de cumpleaños">
+        <button class="letter-button" id="open-letter" type="button" aria-haspopup="dialog">Una carta para usted</button>
+      </section>
+      <dialog class="letter-dialog" id="birthday-letter" aria-labelledby="letter-title">
+        <div class="dialog-inner">
+          <button class="dialog-close" type="button" aria-label="Cerrar la carta">×</button>
+          <div class="lab-sticker" aria-hidden="true">
+            <span class="floating-heart one">♥</span><span class="floating-heart two">♥</span><span class="floating-heart three">♥</span>
+            <svg viewBox="0 0 160 160" role="img" aria-label="Doctora de laboratorio clínico con microscopio">
+              <circle cx="80" cy="80" r="69" fill="#f5e9eb"/>
+              <path d="M36 139c4-27 18-39 44-39s40 12 44 39" fill="#fffdfb" stroke="#87576b" stroke-width="3" stroke-linecap="round"/>
+              <path d="M65 102l15 19 15-19" fill="#eadde1" stroke="#87576b" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M80 121l-6 18m6-18 7 18" stroke="#87576b" stroke-width="2.5"/>
+              <path d="M60 48c0-17 9-27 21-27s21 10 21 27v20c0 17-10 29-21 29S60 85 60 68z" fill="#f0c8b9" stroke="#684b4b" stroke-width="2.5"/>
+              <path d="M59 55c-5-21 5-37 23-37 15 0 25 12 22 31-4-7-9-11-16-14-8 9-18 13-29 14z" fill="#493c3d"/>
+              <path d="M69 63h2m19 0h2" stroke="#493c3d" stroke-width="3" stroke-linecap="round"/>
+              <path d="M76 77c3 3 7 3 10 0" fill="none" stroke="#a85f6c" stroke-width="2" stroke-linecap="round"/>
+              <path d="M47 111l12 7m54-8-11 8" stroke="#87576b" stroke-width="2.5"/>
+              <path d="M112 61l8-8 7 7-8 8m-3-3-14 14m-4 5 5 5 5-5-5-5m-7 8-7 8" fill="none" stroke="#596a70" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M112 48l5-5 7 7-5 5m-23 26 9 9m-11 4 19-19" fill="none" stroke="#596a70" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M48 114l7-9 8 8-7 9z" fill="#d9a1ad" stroke="#87576b" stroke-width="1.5"/>
+              <path d="M104 114h11v18h-11z" fill="#e5f0ed" stroke="#718b86" stroke-width="2"/><path d="M106 122h7" stroke="#718b86" stroke-width="2"/>
+            </svg>
+          </div>
+          <p class="lab-caption">Para mi doctora favorita</p>
+          <div class="letter-content">
+          <h3 id="letter-title">Feliz cumpleaños, mi vida.</h3>
           <p>Hoy celebro que usted esté en mi vida y la suerte que tengo de compartir mis días con usted. Desde que llegó, hay más risas, más cariño y tantos recuerdos que guardo como mis favoritos.</p>
           <p>Le deseo un año lleno de tranquilidad, sueños cumplidos, aventuras bonitas y momentos que le hagan reír. Usted merece sentirse orgullosa de la mujer increíble que es.</p>
-          <p>Gracias por ser usted, por quererme y por hacer que lo cotidiano se sienta especial. Me hace feliz compartir la vida a su lado.</p>
+          <p>Gracias por ser usted, por quererme y por hacer que lo cotidiano se sienta especial. Admiro el cuidado y la dedicación que pone en su trabajo en el laboratorio clínico. Me hace feliz compartir la vida a su lado.</p>
           <p>Espero que disfrute este día con la misma alegría que usted regala a quienes la queremos. Feliz cumpleaños, mi reina. La amo con todo mi corazón.</p>
           <p class="signoff">Con todo mi amor.</p>
         </div>
-      </details>
+      </dialog>
     </main>
 
     <footer><span>Hecho especialmente para usted.</span><span>Feliz cumpleaños ♥</span></footer>
   </div>
+  <script>
+    const letterDialog = document.getElementById('birthday-letter');
+    document.getElementById('open-letter').addEventListener('click', () => letterDialog.showModal());
+    letterDialog.querySelector('.dialog-close').addEventListener('click', () => letterDialog.close());
+    letterDialog.addEventListener('click', (event) => {
+      if (event.target === letterDialog) letterDialog.close();
+    });
+  </script>
 </body>
 </html>
