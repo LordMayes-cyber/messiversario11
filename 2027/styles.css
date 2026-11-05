@@ -2,177 +2,233 @@
 
 :root {
   font-family: "Segoe UI", Arial, sans-serif;
-  color: var(--ink, #322b2a);
-  background: var(--paper, #f7f1e8);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --serif: Georgia, "Times New Roman", serif;
+  --ink: #302e2b;
+  --muted: #5f5c58;
+  --paper: #f6f4ef;
+  --paper-alt: #fffefa;
+  --accent: #465d54;
+  --line: #d7d5cf;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; min-height: 100vh; overflow-x: hidden; background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.65; }
 img { display: block; width: 100%; height: 100%; object-fit: cover; }
 a { color: inherit; }
-a:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
-.skip-link { position: absolute; top: 8px; left: 8px; z-index: 10; padding: 10px 14px; transform: translateY(-160%); background: var(--ink); color: var(--paper); }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.skip-link { position: absolute; top: 8px; left: 8px; z-index: 10; padding: 10px 14px; transform: translateY(-160%); background: var(--ink); color: var(--paper-alt); }
 .skip-link:focus { transform: translateY(0); }
-.hero { position: relative; min-height: 520px; display: grid; align-content: center; justify-items: center; padding: 86px max(24px, calc((100vw - 1080px)/2)); text-align: center; overflow: hidden; isolation: isolate; }
-.hero h1 { max-width: 850px; margin: 12px auto 14px; font: 400 clamp(46px, 8vw, 88px)/.99 var(--serif); letter-spacing: -.045em; }
-.kicker, .eyebrow { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-.lead { max-width: 620px; margin: 0 auto; font: 18px/1.65 var(--serif); }
-.month-mark { display: grid; align-content: center; justify-items: center; width: 88px; height: 88px; margin: 28px 0 0; border: 1px solid currentColor; border-radius: 50%; line-height: 1; }
-.month-mark span { font: 400 30px/1 var(--serif); }
-.month-mark small { margin-top: 4px; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.hero { position: relative; min-height: 550px; display: grid; grid-template-columns: minmax(0, .92fr) minmax(310px, 1.08fr); align-items: center; gap: clamp(30px, 6vw, 86px); padding: 68px max(24px, calc((100vw - 1120px) / 2)); overflow: hidden; isolation: isolate; background: var(--paper); }
+.hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; max-width: 620px; }
+.hero h1 { max-width: 850px; margin: 12px 0 16px; font: 400 clamp(44px, 6.8vw, 78px)/.99 var(--serif); letter-spacing: -.045em; text-wrap: balance; }
+.kicker, .eyebrow { margin: 0; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.lead { max-width: 560px; margin: 0; font: 18px/1.65 var(--serif); text-wrap: pretty; }
+.month-mark { display: grid; align-content: center; justify-items: center; width: 72px; height: 72px; margin: 24px 0 0; border: 1px solid var(--accent); border-radius: 50%; line-height: 1; }
+.month-mark span { font: 400 27px/1 var(--serif); }
+.month-mark small { margin-top: 4px; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.hero-visual { position: relative; width: 100%; height: clamp(330px, 42vw, 500px); max-height: 540px; margin: 0; overflow: hidden; background: #d8d4ca; }
+.hero-visual img { aspect-ratio: 4 / 5; }
+.hero-visual figcaption { position: absolute; right: 12px; bottom: 12px; max-width: calc(100% - 24px); padding: 5px 9px; background: #1e211fdb; color: #fff; font-size: 12px; line-height: 1.4; }
 main { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
-.album { padding: 66px 0 78px; }
-.section-head { max-width: 680px; margin: 0 auto 35px; text-align: center; }
-.section-head h2 { margin: 10px 0 7px; font: 400 clamp(32px, 5vw, 55px)/1.08 var(--serif); letter-spacing: -.025em; }
-.note { margin: 0; color: var(--muted, #6d6461); font-size: 14px; }
-.photo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: center; }
+.album { padding: 62px 0 72px; }
+.section-head { max-width: 680px; margin: 0 auto 32px; text-align: center; }
+.section-head h2 { margin: 9px 0 7px; font: 400 clamp(32px, 4.8vw, 52px)/1.08 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
+.note { margin: 0; color: var(--muted); font-size: 14px; }
+.photo-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; align-items: center; }
 .photo { min-width: 0; margin: 0; }
-.photo img { aspect-ratio: 4 / 5; }
-.photo figcaption { padding-top: 9px; color: var(--muted, #6d6461); font-size: 12px; }
-.letter { padding: 54px 0 90px; border-top: 1px solid var(--line, #ded7ce); }
-.letter > .eyebrow { margin-bottom: 20px; text-align: center; }
-.letter-paper { width: min(720px, 100%); margin: 0 auto; padding: clamp(28px, 6vw, 58px); background: var(--paper-alt, #fffdf9); box-shadow: var(--paper-shadow, 0 15px 45px #3b282114); }
-.letter-date { margin: 0 0 14px; color: var(--accent, #985e4e); font-size: 11px; font-weight: 700; letter-spacing: .13em; text-align: center; text-transform: uppercase; }
-.letter-paper h2 { margin: 0 0 24px; color: var(--accent, #985e4e); font: 400 clamp(31px, 5vw, 46px)/1.1 var(--serif); text-align: center; }
-.letter-paper p:not(.letter-date) { font: 16px/1.85 var(--serif); }
-.signature { margin: 28px 0 0; color: var(--accent, #985e4e); font: italic 22px/1.4 var(--serif) !important; text-align: right; }
-footer { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px max(22px, calc((100vw - 1120px)/2)) 30px; border-top: 1px solid var(--line, #ded7ce); font-size: 12px; }
-footer a { text-underline-offset: 4px; }
+.photo img { aspect-ratio: 4 / 5; background: #dedbd4; }
+.photo figcaption { padding-top: 8px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+.letter { padding: 48px 0 82px; border-top: 1px solid var(--line); }
+.letter > .eyebrow { margin-bottom: 18px; text-align: center; }
+.letter-paper { width: min(720px, 100%); margin: 0 auto; padding: clamp(28px, 5.5vw, 54px); background: var(--paper-alt); color: var(--ink); }
+.letter-date { margin: 0 0 13px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-align: center; text-transform: uppercase; }
+.letter-paper h2 { margin: 0 0 22px; color: var(--accent); font: 400 clamp(30px, 4.5vw, 43px)/1.12 var(--serif); text-align: center; text-wrap: balance; }
+.letter-paper p:not(.letter-date) { max-width: 62ch; margin: 0 auto 15px; font: 16px/1.8 var(--serif); text-wrap: pretty; }
+.signature { margin: 26px auto 0 !important; color: var(--accent); font: 400 20px/1.45 var(--serif) !important; text-align: right; }
+footer { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 20px max(22px, calc((100vw - 1120px) / 2)) 30px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 
-/* January: New Year editorial, crisp columns and a ruled journal page. */
-.january { --paper:#f5f3ed; --paper-alt:#fffefa; --ink:#253b3a; --muted:#596d68; --accent:#416d63; --line:#d5ddd7; --paper-shadow:8px 10px 0 #dce4dc; }
-.january .hero { min-height:570px; background:linear-gradient(90deg,#e5ece6 0 50%,#f5f3ed 50%); }
-.january .hero::before { content:"2027"; position:absolute; z-index:-1; top:50%; right:-.02em; transform:translateY(-50%); color:#416d6310; font:900 min(40vw,430px)/1 Arial,sans-serif; }
-.january .hero h1 { max-width:760px; }
-.january .month-mark { border-radius:4px; transform:rotate(-4deg); background:#fffefa; }
-.january .photo-grid { grid-template-columns:1.2fr .8fr .8fr; grid-template-rows:auto auto; }
+/* January — a quiet, split-page opening with a sharp calendar grid. */
+.january { --paper:#f3f4ef; --paper-alt:#fffefa; --ink:#263a35; --muted:#4e625b; --accent:#315d50; --line:#cbd5cf; }
+.january .hero { grid-template-columns:.95fr 1.05fr; }
+.january .hero-visual { border-left:6px solid #d6e1d8; }
+.january .month-mark { border-radius:4px; }
+.january .photo-grid { grid-template-columns:1.2fr .8fr .8fr; grid-template-rows:auto auto; gap:13px; }
 .january .photo-1 { grid-row:span 2; }
 .january .photo-1 img { aspect-ratio:3/4; }
 .january .photo-2 img,.january .photo-3 img,.january .photo-4 img { aspect-ratio:1.45/1; }
-.january .letter-paper { background:repeating-linear-gradient(#fffefa 0 35px,#dce7e1 36px); border-left:4px solid #84a99a; }
+.january .letter-paper { border-left:4px solid #84a99a; }
 
-/* February: layered Valentine scrapbook with offset snapshots. */
-.february { --paper:#fff3f1; --paper-alt:#fffaf8; --ink:#532f39; --muted:#825b62; --accent:#a63f58; --line:#efc8cc; --paper-shadow:0 18px 45px #8b33421f; }
-.february .hero { min-height:530px; color:#fff9f6; background:radial-gradient(circle at 50% 0,#dc8a91 0,#a63f58 45%,#632d41 100%); }
-.february .hero::before,.february .hero::after { content:"♥"; position:absolute; z-index:-1; color:#fff2f21c; font:300 300px/1 Georgia,serif; }
-.february .hero::before { left:2%; top:14%; transform:rotate(-18deg); }.february .hero::after { right:1%; bottom:-22%; transform:rotate(15deg); }
-.february .month-mark { border:1px solid #ffe2df; }
-.february .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:26px; }
-.february .photo { padding:10px 10px 32px; background:white; box-shadow:0 10px 22px #63314122; }
-.february .photo:nth-child(odd) { transform:rotate(-2deg); }.february .photo:nth-child(even) { transform:rotate(2deg); }
-.february .photo img { aspect-ratio:1.2/1; }.february .photo figcaption { padding:10px 4px 0; color:#76414d; font-family:var(--serif); text-align:center; }
-.february .letter-paper { border:1px solid #e5aeb5; border-radius:4px 30px 4px 30px; }
+/* February — a real-photo scrapbook print with a simple red type accent. */
+.february { --paper:#f8f0ee; --paper-alt:#fffdfb; --ink:#452d32; --muted:#684d53; --accent:#9b3e53; --line:#e1c6c5; }
+.february .hero { grid-template-columns:.9fr 1.1fr; background:#f6e7e5; }
+.february .hero-content { order:2; align-items:center; text-align:center; }
+.february .lead { max-width:480px; }
+.february .hero-visual { order:1; height:clamp(310px, 39vw, 450px); padding:12px 12px 30px; overflow:visible; background:#fffefa; box-shadow:0 9px 22px #39212620; transform:rotate(-1.5deg); }
+.february .hero-visual img { aspect-ratio:4/5; }
+.february .hero-visual figcaption { right:18px; bottom:5px; left:18px; max-width:none; padding:1px 0; background:transparent; color:#684d53; font:italic 13px var(--serif); text-align:center; }
+.february .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.february .photo { padding:9px 9px 22px; background:#fffefa; box-shadow:0 6px 18px #39212616; }
+.february .photo:nth-child(odd) { transform:rotate(-1deg); }.february .photo:nth-child(even) { transform:rotate(1deg); }
+.february .photo img { aspect-ratio:1.2/1; }.february .photo figcaption { text-align:center; }
+.february .letter-paper { border-top:3px solid #9b3e53; }
 
-/* March: botanical field journal with a side-by-side hero and specimen gallery. */
-.march { --paper:#f2f3e9; --paper-alt:#fbfcf4; --ink:#354636; --muted:#667461; --accent:#55764f; --line:#cdd7c4; --paper-shadow:0 14px 0 #e0e7d7; }
-.march .hero { min-height:490px; justify-items:start; padding-left:max(8vw,calc((100vw - 1050px)/2)); text-align:left; background:linear-gradient(90deg,#e4ead9 0 60%,#f2f3e9 60%); }
-.march .hero h1,.march .hero .lead { max-width:610px; margin-left:0; }.march .month-mark { position:absolute; right:14%; bottom:44px; border-radius:50% 50% 50% 8px; }
-.march .section-head { text-align:left; margin-left:0; }.march .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); align-items:end; gap:12px; }
-.march .photo:nth-child(even) { transform:translateY(-20px); }.march .photo img { aspect-ratio:3/4; border:8px solid #fbfcf4; box-shadow:0 8px 20px #43553b1a; }
-.march .photo figcaption { font:italic 12px var(--serif); }.march .letter-paper { border-left:5px solid #8ca277; border-radius:0 36px 0 0; }
+/* March — a botanical journal: left-aligned title, framed portrait and green rule. */
+.march { --paper:#f0f2e9; --paper-alt:#fafbf5; --ink:#334336; --muted:#52604d; --accent:#4b6947; --line:#c9d2c0; }
+.march .hero { grid-template-columns:1.05fr .95fr; background:#e8eddf; }
+.march .hero-content { padding-left:clamp(0px,3vw,35px); border-left:2px solid #78906c; }
+.march .hero-visual { order:-1; height:clamp(390px,45vw,530px); }
+.march .hero-visual img { aspect-ratio:3/4; }
+.march .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); align-items:start; gap:13px; }
+.march .photo:nth-child(even) { margin-top:25px; }
+.march .photo img { aspect-ratio:3/4; border:5px solid #fafbf5; }
+.march .letter-paper { border-left:4px solid #819276; }
 
-/* April: analog film contact sheet and darkroom black frame. */
-.april { --paper:#e9e8e3; --paper-alt:#202222; --ink:#242727; --muted:#666b68; --accent:#c6b57a; --line:#c9c8c2; --paper-shadow:0 20px 55px #0003; }
-.april .hero { min-height:480px; color:#f3f0e8; background:radial-gradient(ellipse at 50% 110%,#565852,#242625 70%); }
-.april .hero h1 { max-width:720px; font-style:italic; }.april .lead { color:#dedbd2; }.april .month-mark { border-style:dashed; }
-.april main { width:min(1200px,calc(100% - 36px)); }.april .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; padding:14px; background:#292c2a; border-block:12px solid #292c2a; }
-.april .photo { padding:7px 7px 17px; background:#f2f0e9; }.april .photo img { aspect-ratio:1/1; filter:saturate(.75) contrast(1.04); }.april .photo figcaption { padding-top:7px; color:#333; font:10px/1.2 Arial,sans-serif; text-align:center; }
-.april .letter { border-color:#89877e; }.april .letter-paper { color:#f3f0e8; border:1px solid #65675f; }
+/* April — an analog-film cover; the photograph itself sets the mood. */
+.april { --paper:#e9e9e5; --paper-alt:#222523; --ink:#262a28; --muted:#515854; --accent:#c7b67e; --line:#c2c6c0; }
+.april .hero { min-height:620px; grid-template-columns:1fr; background:#222523; color:#f7f5ed; }
+.april .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,#161a18e8 0%,#161a187e 58%,#161a181c 100%); }
+.april .hero-content { max-width:720px; color:#f7f5ed; }
+.april .hero-content .kicker { color:#ead99f; }
+.april .hero-visual { position:absolute; z-index:-2; inset:0; width:100%; height:100%; max-height:none; }
+.april .hero-visual img { aspect-ratio:auto; }
+.april .hero-visual figcaption { right:24px; bottom:22px; background:#161a18b3; color:#fff; }
+.april .month-mark { border-style:dashed; border-color:#e4d398; }
+.april main { width:min(1200px,calc(100% - 36px)); }
+.april .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; padding:13px 0; border-block:1px dashed #aaa99f; }
+.april .photo img { aspect-ratio:1/1; filter:saturate(.82); }
+.april .photo figcaption { font:12px/1.4 Arial,sans-serif; }
+.april .letter { border-color:#99998e; }.april .letter-paper { color:#f7f5ed; border:1px solid #60645e; }
 
-/* May: clean fashion-magazine spread with a large lead photograph. */
-.may { --paper:#f7eee5; --paper-alt:#fffaf4; --ink:#463631; --muted:#79655c; --accent:#b6654c; --line:#e3cfc0; --paper-shadow:12px 12px 0 #e8d6c9; }
-.may .hero { min-height:540px; align-content:end; justify-items:start; padding-bottom:65px; text-align:left; background:linear-gradient(0deg,#f7eee5 0 8%,transparent 60%),linear-gradient(115deg,#efd9c8,#f7eee5 52%,#d5a590); }
-.may .hero h1 { max-width:700px; margin-left:0; }.may .hero .lead { margin-left:0; }.may .month-mark { position:absolute; top:46px; right:8%; width:105px; height:105px; border:0; background:#b6654c; color:#fffaf4; }
-.may .section-head { text-align:left; margin-left:0; }.may .photo-grid { grid-template-columns:1.5fr 1fr 1fr; grid-template-rows:auto auto; gap:15px; }
-.may .photo-1 { grid-row:span 2; }.may .photo-1 img { aspect-ratio:3/4; }.may .photo-2 img,.may .photo-3 img,.may .photo-4 img { aspect-ratio:1.32/1; }
-.may .letter-paper { border-top:7px solid #b6654c; }
+/* May — a magazine spread, with the photograph and title on different scales. */
+.may { --paper:#f4eee6; --paper-alt:#fffaf4; --ink:#44342f; --muted:#62534c; --accent:#9b503e; --line:#ddc9ba; }
+.may .hero { min-height:590px; align-items:end; padding-bottom:60px; background:#eee3d8; }
+.may .hero-content { align-self:end; padding-bottom:18px; }
+.may .hero h1 { max-width:650px; font-size:clamp(48px,7.8vw,88px); }
+.may .hero-visual { height:clamp(380px,48vw,540px); }
+.may .month-mark { position:absolute; top:26px; right:26px; border:0; border-radius:0; background:#9b503e; color:#fffaf4; }
+.may .section-head { text-align:left; margin-left:0; }
+.may .photo-grid { grid-template-columns:1.5fr 1fr 1fr; grid-template-rows:auto auto; gap:14px; }
+.may .photo-1 { grid-row:span 2; }.may .photo-1 img { aspect-ratio:3/4; }
+.may .photo-2 img,.may .photo-3 img,.may .photo-4 img { aspect-ratio:1.3/1; }
+.may .letter-paper { border-top:4px solid #9b503e; }
 
-/* June: travel postcard with perforated-edge frames. */
-.june { --paper:#e8f1f0; --paper-alt:#fffdf7; --ink:#25454b; --muted:#587579; --accent:#b26443; --line:#c3d6d5; --paper-shadow:0 12px 30px #274c4b20; }
-.june .hero { min-height:520px; color:#fffdf7; background:linear-gradient(135deg,#23505a,#378188 55%,#b3d3c7); }
-.june .hero::before { content:""; position:absolute; z-index:-1; width:380px; height:380px; right:-70px; bottom:-190px; border:1px solid #fff6; border-radius:50%; box-shadow:0 0 0 24px #fff2,0 0 0 50px #fff1; }
-.june .month-mark { border-style:dashed; }.june .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
-.june .photo { padding:9px; border:1px dashed #699294; background:#fffdf7; }.june .photo img { aspect-ratio:1/1.2; }.june .photo figcaption { font:italic 12px var(--serif); }
-.june .letter-paper { border:1px dashed #8eb1ae; outline:6px solid #fffdf7; }
+/* June — a travel postcard in sea blue, framed with a fine perforation. */
+.june { --paper:#eaf0ee; --paper-alt:#fffdf7; --ink:#29434a; --muted:#4f666a; --accent:#98583f; --line:#bfd0ce; }
+.june .hero { grid-template-columns:.95fr 1.05fr; background:#dfe9e5; }
+.june .hero-visual { padding:9px; border:1px dashed #698589; background:#fffdf7; }
+.june .hero-visual img { aspect-ratio:4/5; }
+.june .photo-grid { gap:13px; }
+.june .photo img { aspect-ratio:1/1.2; }
+.june .letter-paper { border:1px dashed #78999a; outline:5px solid #fffdf7; }
 
-/* July: deep dusk tones and a staggered cinematic frame layout. */
-.july { --paper:#172637; --paper-alt:#21384b; --ink:#f1e6d2; --muted:#bcc2c4; --accent:#f0b46b; --line:#455567; --paper-shadow:0 18px 55px #070e18aa; }
-.july .hero { min-height:560px; color:#f7ebd8; background:radial-gradient(ellipse at 50% 110%,#c27a54 0,#60445a 35%,#1b2d44 74%); }
-.july .hero::after { content:""; position:absolute; z-index:-1; inset:0; opacity:.18; background-image:radial-gradient(#fff 1px,transparent 1px); background-size:31px 31px; mask-image:linear-gradient(transparent,#000); }
-.july .month-mark { border-color:#f0b46b; }.july .photo-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px; }
-.july .photo { grid-column:span 3; }.july .photo:nth-child(2),.july .photo:nth-child(3) { transform:translateY(20px); }.july .photo img { aspect-ratio:1.45/1; border:1px solid #f0b46b66; }
-.july .letter { margin-top:18px; }.july .letter-paper { border:1px solid #f0b46b88; }
+/* July — a dusk-film cover with the actual photograph full-bleed. */
+.july { --paper:#eee8df; --paper-alt:#fffaf2; --ink:#392f2c; --muted:#625754; --accent:#aa6044; --line:#d5c7b9; }
+.july .hero { min-height:650px; grid-template-columns:1fr; align-content:end; padding-bottom:70px; color:#fffaf2; background:#382d33; }
+.july .hero::after { content:""; position:absolute; z-index:-1; inset:0; background:linear-gradient(0deg,#241b1dd9 0%,#241b1d72 45%,#241b1d12 100%); }
+.july .hero-content { max-width:760px; }
+.july .hero-content .kicker { color:#f2cfaa; }
+.july .hero-visual { position:absolute; z-index:-2; inset:0; width:100%; height:100%; max-height:none; }
+.july .hero-visual img { aspect-ratio:auto; object-position:center 36%; }
+.july .hero-visual figcaption { right:26px; bottom:22px; background:#241b1db3; }
+.july .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+.july .photo img { aspect-ratio:1.45/1; }.july .photo figcaption { border-bottom:1px solid #aa6044; padding-bottom:6px; }
 
-/* August: loose polaroid desk collage. */
-.august { --paper:#e8dfd0; --paper-alt:#fffdf7; --ink:#47372d; --muted:#766658; --accent:#986548; --line:#d2c3af; --paper-shadow:0 14px 28px #47372d25; }
-.august .hero { min-height:510px; background:radial-gradient(ellipse at center,#f7f0e3,#dacbb7); }
-.august .hero::before { content:""; position:absolute; z-index:-1; width:250px; height:330px; left:7%; top:20%; border:1px solid #9b745d33; transform:rotate(-12deg); }
-.august .month-mark { border-radius:5px; background:#fffdf7; box-shadow:0 8px 20px #47372d22; transform:rotate(5deg); }
-.august .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:17px; padding:18px 10px 32px; }
-.august .photo { padding:9px 9px 27px; background:#fffdf7; box-shadow:var(--paper-shadow); }.august .photo:nth-child(1){transform:rotate(-4deg)}.august .photo:nth-child(2){transform:rotate(3deg) translateY(15px)}.august .photo:nth-child(3){transform:rotate(-2deg) translateY(-8px)}.august .photo:nth-child(4){transform:rotate(4deg) translateY(11px)}
-.august .photo img { aspect-ratio:1/1.12; }.august .photo figcaption { font:italic 11px var(--serif); text-align:center; }.august .letter-paper { transform:rotate(-1deg); }
+/* August — a personal scrapbook without overlaid decorations. */
+.august { --paper:#ebe4d8; --paper-alt:#fffdf7; --ink:#46382e; --muted:#625449; --accent:#8d5f45; --line:#d0c2b0; }
+.august .hero { grid-template-columns:1fr 1fr; background:#e2d6c5; }
+.august .hero-visual { width:88%; justify-self:center; padding:10px 10px 28px; overflow:visible; background:#fffdf7; box-shadow:0 8px 18px #47372d24; transform:rotate(1.5deg); }
+.august .hero-visual figcaption { right:14px; bottom:3px; left:14px; max-width:none; padding:0; background:transparent; color:#625449; font:italic 12px var(--serif); text-align:center; }
+.august .photo-grid { gap:20px; padding:12px 8px 20px; }
+.august .photo { padding:8px 8px 22px; background:#fffdf7; box-shadow:0 6px 14px #47372d20; }
+.august .photo:nth-child(1){transform:rotate(-1.5deg)}.august .photo:nth-child(2){transform:rotate(1.5deg) translateY(10px)}.august .photo:nth-child(3){transform:rotate(-1deg) translateY(-6px)}.august .photo:nth-child(4){transform:rotate(1deg) translateY(8px)}
+.august .photo img { aspect-ratio:1/1.12; }.august .photo figcaption { font:12px/1.4 var(--serif); }
+.august .letter-paper { transform:rotate(-.5deg); }
 
-/* September: school notebook, tidy index cards and ruled paper. */
-.september { --paper:#edf1f6; --paper-alt:#fff; --ink:#263b56; --muted:#596d83; --accent:#3f6294; --line:#d1dce9; --paper-shadow:0 12px 32px #263b5617; }
-.september .hero { min-height:500px; justify-items:start; padding-left:max(8vw,calc((100vw - 1000px)/2)); text-align:left; background:linear-gradient(90deg,#dce8f1 0 13%,#edf1f6 13%); }
-.september .hero h1,.september .hero .lead { max-width:700px; margin-left:0; }.september .month-mark { position:absolute; right:10%; top:calc(50% - 44px); border-radius:8px; }
-.september .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }.september .photo { display:grid; grid-template-columns:115px 1fr; align-items:center; gap:14px; padding:12px; border:1px solid #c8d5e4; background:#fff; }
-.september .photo img { aspect-ratio:1; }.september .photo figcaption { font:italic 14px var(--serif); }.september .letter-paper { background:repeating-linear-gradient(#fff 0 31px,#dae5f1 32px); border-left:3px solid #c97878; }
+/* September — a ruled notebook with a red margin and indexed memories. */
+.september { --paper:#eef2f5; --paper-alt:#fff; --ink:#293b50; --muted:#4e6074; --accent:#3e5e83; --line:#c9d6e2; }
+.september .hero { grid-template-columns:1fr .9fr; padding-left:max(8vw,calc((100vw - 1080px)/2)); border-left:8px solid #c97b76; background:#e5edf3; }
+.september .hero-content { padding-left:clamp(0px,2vw,28px); }
+.september .hero-visual { border:1px solid #b9c8d6; }
+.september .month-mark { border-radius:6px; }
+.september .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 18px; counter-reset:photo; }
+.september .photo { display:grid; grid-template-columns:minmax(100px,.55fr) 1fr; align-items:center; gap:12px; padding:10px; border-bottom:1px solid #b9c8d6; }
+.september .photo img { aspect-ratio:1/1; }.september .photo figcaption { font:italic 14px/1.5 var(--serif); }
+.september .letter-paper { background:repeating-linear-gradient(#fff 0 31px,#dce6ef 32px); border-left:3px solid #c97878; }
 
-/* October: nocturnal gallery under a pale harvest moon. */
-.october { --paper:#191b29; --paper-alt:#252738; --ink:#f1e9df; --muted:#c4b9b1; --accent:#d5a26d; --line:#444153; --paper-shadow:0 20px 60px #080812aa; }
-.october .hero { min-height:570px; color:#f5eee6; background:radial-gradient(circle at 80% 18%,#e6c995 0 7%,transparent 7.3%),linear-gradient(155deg,#27283c,#191b29 66%); }
-.october .hero::before { content:""; position:absolute; z-index:-1; inset:0; opacity:.12; background-image:radial-gradient(#f5eee6 1px,transparent 1px); background-size:48px 48px; }
-.october .month-mark { border-color:#d5a26d; }.october .photo-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-.october .photo-1 { grid-column:span 2; grid-row:span 2; }.october .photo-1 img { aspect-ratio:1/1; }.october .photo:not(.photo-1) img { aspect-ratio:1.25/1; }.october .photo img { filter:saturate(.76); outline:1px solid #d5a26d55; outline-offset:-5px; }
-.october .letter { border-color:#514b5d; }.october .letter-paper { border:1px solid #78634e; }
+/* October — a dark portrait layout, anchored by a real close-up. */
+.october { --paper:#1d2028; --paper-alt:#292b33; --ink:#f0ece5; --muted:#cec5bc; --accent:#d0a66f; --line:#44444b; }
+.october .hero { grid-template-columns:.85fr 1.15fr; background:#242630; color:#f0ece5; }
+.october .hero-content .kicker { color:#e0bc8e; }
+.october .hero-visual { height:clamp(390px,46vw,540px); }
+.october .hero-visual img { aspect-ratio:3/4; }
+.october .month-mark { border-color:#d0a66f; }
+.october .photo-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.october .photo-1 { grid-column:span 2; grid-row:span 2; }.october .photo-1 img { aspect-ratio:1/1; }
+.october .photo:not(.photo-1) img { aspect-ratio:1.25/1; }
+.october .photo img { outline:1px solid #d0a66f55; outline-offset:-5px; }
+.october .letter { border-color:#514c54; }.october .letter-paper { border:1px solid #74634d; }
 
-/* November: warm harvest table and stacked photo strips. */
-.november { --paper:#f1e7d8; --paper-alt:#fff9ef; --ink:#49362b; --muted:#786251; --accent:#9e5d38; --line:#ddc8ae; --paper-shadow:0 16px 40px #64432b20; }
-.november .hero { min-height:480px; justify-items:start; padding-left:max(9vw,calc((100vw - 1000px)/2)); text-align:left; background:linear-gradient(110deg,#ead7bc,#f1e7d8 62%,#d9b993); }
-.november .hero h1,.november .hero .lead { max-width:680px; margin-left:0; }.november .month-mark { position:absolute; right:12%; bottom:48px; border-radius:50% 50% 7px 50%; background:#fff9ef; }
-.november .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }.november .photo { display:grid; grid-template-columns:1.25fr 1fr; align-items:center; gap:14px; padding:12px; background:#fff9ef; border:1px solid #ddc8ae; }
-.november .photo:nth-child(even) { grid-template-columns:1fr 1.25fr; }.november .photo:nth-child(even) img { order:2; }.november .photo img { aspect-ratio:1.15/1; }.november .photo figcaption { padding:10px; font:italic 13px var(--serif); }
-.november .letter-paper { border-radius:24px 4px 24px 4px; }
+/* November — an unhurried split layout and horizontal photo strips. */
+.november { --paper:#f0e8dc; --paper-alt:#fffaf1; --ink:#44362d; --muted:#5f5045; --accent:#925638; --line:#d8c7b2; }
+.november .hero { grid-template-columns:1.05fr .95fr; background:#e9ddcb; }
+.november .hero-visual { order:-1; height:clamp(370px,42vw,500px); }
+.november .hero-visual img { aspect-ratio:4/5; }
+.november .month-mark { border-radius:50% 50% 6px 50%; }
+.november .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; }
+.november .photo { display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:12px; padding:10px; border-top:1px solid #cdb89e; }
+.november .photo:nth-child(even) { grid-template-columns:1fr 1.2fr; }.november .photo:nth-child(even) img { order:2; }
+.november .photo img { aspect-ratio:1.2/1; }.november .photo figcaption { padding:8px; font:13px/1.5 var(--serif); }
+.november .letter-paper { border-top:3px solid #925638; }
 
-/* December: midnight blue, clean festive lights, and a wrapped letter. */
-.december { --paper:#122b3c; --paper-alt:#f8f4e9; --ink:#f3ecd9; --muted:#c5d0d1; --accent:#9b3f4a; --line:#3c5865; --paper-shadow:0 18px 50px #07151eaa; }
-.december .hero { min-height:590px; color:#f8f4e9; background:radial-gradient(ellipse at 50% 0,#2d5866,#122b3c 68%); }
-.december .hero::before { content:""; position:absolute; z-index:-1; inset:22px; border:1px solid #d3bd7b77; border-radius:180px 180px 18px 18px; }
-.december .hero::after { content:""; position:absolute; z-index:-1; width:min(80vw,850px); height:3px; top:68px; left:50%; transform:translateX(-50%); background:repeating-linear-gradient(90deg,#d3bd7b 0 3px,transparent 3px 82px); box-shadow:0 12px 0 -1px #9b3f4a,0 24px 0 -1px #d3bd7b; }
-.december .month-mark { border-color:#d3bd7b; }.december .photo-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; padding:12px; border:1px solid #d3bd7b88; }
-.december .photo { padding:7px; background:#f8f4e9; }.december .photo img { aspect-ratio:1/1.28; }.december .photo figcaption { color:#51463b; font-size:10px; text-align:center; }
-.december .letter { border-color:#3c5865; }.december .letter-paper { border:9px double #d3bd7b; }
+/* December — deep blue, a framed portrait, and a letter on cream paper. */
+.december { --paper:#172f3c; --paper-alt:#f8f4e9; --ink:#f3ecd9; --muted:#c8d0ce; --accent:#a64b4b; --line:#3e5760; }
+.december .hero { grid-template-columns:.95fr 1.05fr; color:#f8f4e9; background:#173746; }
+.december .hero-content .kicker { color:#dec992; }
+.december .hero-visual { padding:8px; border:1px solid #dec992; }
+.december .hero-visual img { aspect-ratio:4/5; }
+.december .month-mark { border-color:#dec992; }
+.december .photo-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:10px; padding:12px; border:1px solid #d3bd7b88; }
+.december .photo { grid-column:span 2; padding:6px; background:#f8f4e9; }
+.december .photo-1 { grid-column:span 3; grid-row:span 2; }.december .photo-1 img { aspect-ratio:3/4; }
+.december .photo:not(.photo-1) img { aspect-ratio:1/1.25; }
+.december .photo figcaption { color:#51463b; font-size:12px; }
+.december .letter-paper { --ink:#293a40; --muted:#5c5b53; border:6px double #d3bd7b; }
 
 @media (max-width: 760px) {
-  .hero { min-height:440px; padding:74px 24px; }
+  .hero { min-height:0; grid-template-columns:1fr !important; gap:26px; padding:54px 24px 44px; }
+  .hero-content { max-width:620px; }
+  .hero-visual { width:100% !important; height:min(112vw,480px) !important; max-height:none; order:0 !important; transform:none !important; }
+  .hero-visual img { aspect-ratio:4/5 !important; }
   .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
   .photo { grid-column:auto !important; grid-row:auto !important; transform:none !important; }
   .photo img { aspect-ratio:1/1.08 !important; }
-  .photo-1 img { aspect-ratio:1/1.08 !important; }
   .september .photo,.november .photo { display:block; }
-  .september .photo figcaption,.november .photo figcaption { padding:9px 2px 0; }
+  .september .photo figcaption,.november .photo figcaption { padding:8px 2px 0; }
   .september .photo img,.november .photo img { order:initial !important; }
+  .december .photo { grid-column:auto; }
+  .december .photo-1 { grid-column:span 2; grid-row:span 2; }
+  .april .hero,.july .hero { min-height:590px; grid-template-columns:1fr !important; align-content:end; }
+  .april .hero-visual,.july .hero-visual { position:absolute; inset:0; width:100% !important; height:100% !important; }
+  .april .hero-visual img,.july .hero-visual img { aspect-ratio:auto !important; }
+  .april .hero-content,.july .hero-content { align-self:end; }
 }
 @media (max-width: 520px) {
   body { font-size:16px; }
-  .hero { min-height:410px; }
-  .hero h1 { font-size:clamp(42px,13vw,66px); }
-  .lead { font-size:16px; }
+  .hero { padding:44px 18px 36px; }
+  .hero h1 { font-size:clamp(42px,12vw,62px); }
+  .lead { font-size:17px; }
   main { width:calc(100% - 32px); }
-  .album { padding:48px 0 60px; }
-  .section-head { text-align:left; margin-bottom:24px; }
-  .photo-grid { gap:10px; }
-  .february .photo { padding:7px 7px 20px; }
-  .march .photo img { border-width:4px; }
-  .letter { padding:40px 0 64px; }
-  .letter-paper { padding:26px 22px; }
+  .album { padding:46px 0 58px; }
+  .section-head { margin-bottom:24px; text-align:left; }
+  .photo-grid { gap:12px; }
+  .february .photo { padding:7px 7px 16px; }
+  .march .photo img { border-width:3px; }
+  .letter { padding:38px 0 60px; }
+  .letter-paper { padding:25px 21px; }
   footer { align-items:flex-start; flex-direction:column; padding-inline:18px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
-  *, *::before, *::after { scroll-behavior:auto !important; }
 }
